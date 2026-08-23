@@ -15,21 +15,24 @@ export const CLAN = {
   developer: "jah",
   musicUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3",
   members: [
-    { id: "773952016036790272", role: "Leader", title: "Leader" },
-    { id: "804955810820128798", role: "Captain", title: "Captain" },
-    { id: "209796601357533184", role: "Captain", title: "Captain" },
-    { id: "604779545018761237", role: "Slayer", title: "Slayer" },
-    { id: "159985870458322944", role: "Slayer", title: "Slayer" },
-    { id: "270904126974590976", role: "Support", title: "Support" },
+    { id: "1485214254536855643", role: "Proprietor", title: "Jah" },
+    { id: "1399746060968005683", role: "Proprietor", title: "Beloved" },
+    { id: "1459760647477919818", role: "Proprietor", title: "Captain" },
+    { id: "1142156139950252152", role: "Gettin", title: "Bisaya Slayer" },
+    { id: "1528026648958603344", role: "Gettin", title: "Slayer" },
+    { id: "1453678917264216208", role: "Tier 1", title: "The Best" },
   ] satisfies ClanMember[],
 };
 
 export const ROLE_ORDER: MemberRole[] = [
-  "Leader",
+  "Jah",
   "Captain",
   "Slayer",
   "Support",
   "Member",
+  "Beloved",
+  "The Best",
+   "Bisaya Slayer",
 ];
 
 export const VALUES = [

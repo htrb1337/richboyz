@@ -9,11 +9,11 @@ export type ClanMember = {
 export const CLAN = {
   name: "S MOB",
   tag: "SMOB",
-  established: "2024",
+  established: "2025",
   invite: "https://discord.gg/nDdqYTjaZW",
   roblox: "https://www.roblox.com/communities/985129349/South-Mob#!/about",
   developer: "jah",
-  musicUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3",
+  musicUrl: "https://file.garden/aTzT5J7_xC8SSTd2/Times%20Up%20-%20NOB%20TSG%20(OMV)%20SHOTBY_@PITIKNIALLEN.mp3",
   members: [
     { id: "1485214254536855643", role: "Proprietor", title: "Jah" },
     { id: "1399746060968005683", role: "Proprietor", title: "Beloved" },

@@ -15,7 +15,7 @@ export const CLAN = {
   developer: "jah",
   musicUrl: "https://file.garden/aTzT5J7_xC8SSTd2/Times%20Up%20-%20NOB%20TSG%20(OMV)%20SHOTBY_@PITIKNIALLEN.mp3",
   members: [
-    { id: "1485214254536855643", role: "Proprietor", title: "Jah" },
+    { id: "1485214254536855643", role: "Proprietor", title: "Crazy" },
     { id: "1399746060968005683", role: "Proprietor", title: "Beloved" },
     { id: "1459760647477919818", role: "Proprietor", title: "Captain" },
     { id: "1142156139950252152", role: "Gettin", title: "Bisaya Slayer" },

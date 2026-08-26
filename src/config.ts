@@ -20,7 +20,7 @@ export const CLAN = {
     { id: "1459760647477919818", role: "Proprietor", title: "Captain" },
     { id: "1142156139950252152", role: "Gettin", title: "Bisaya Slayer" },
     { id: "1528026648958603344", role: "Gettin", title: "Slayer" },
-    { id: "1453678917264216208", role: "Tier 1", title: "The Best" },
+    { id: "1330864052477366273", role: "Tier 1", title: "The Best" },
   ] satisfies ClanMember[],
 };
 

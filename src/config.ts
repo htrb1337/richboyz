@@ -10,7 +10,7 @@ export const CLAN = {
   name: "S MOB",
   tag: "SMOB",
   established: "2025",
-  invite: "https://discord.gg/nDdqYTjaZW",
+  invite: "https://discord.gg/brhxvr859K",
   roblox: "https://www.roblox.com/communities/985129349/South-Mob#!/about",
   developer: "jah.club",
   musicUrl: "https://file.garden/aTzT5J7_xC8SSTd2/0826(1).MP3",

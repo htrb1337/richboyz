@@ -13,7 +13,7 @@ export const CLAN = {
   invite: "https://discord.gg/nDdqYTjaZW",
   roblox: "https://www.roblox.com/communities/985129349/South-Mob#!/about",
   developer: "jah.club",
-  musicUrl: "https://file.garden/aTzT5J7_xC8SSTd2/%E6%B2%A1%E6%87%82.mp3",
+  musicUrl: "https://file.garden/aTzT5J7_xC8SSTd2/0826.MP3",
   members: [
     { id: "1485214254536855643", role: "Proprietor", title: "Crazy" },
     { id: "1399746060968005683", role: "Proprietor", title: "Beloved" },

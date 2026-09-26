@@ -1,42 +1,4523 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>THE DARK ARCHIVE</title>
-<style>
-:root{--bg:#050505;--card:#0d0d0d;--line:#202020;--muted:#888;--text:#f5f5f5;--red:#ff3030}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#240707,transparent 38%),var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;text-transform:uppercase}button,input,textarea,select{font:inherit;text-transform:uppercase}button{cursor:pointer}.hidden{display:none!important}.nav{position:sticky;top:0;z-index:20;height:72px;border-bottom:1px solid var(--line);background:#050505d9;backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:0 5%}.brand{font-weight:900;letter-spacing:.12em}.tabs{display:flex;gap:25px}.tab{position:relative;border:0;background:none;color:#777;height:72px;font-size:11px;font-weight:800}.tab:after{content:'';position:absolute;left:0;right:0;bottom:16px;height:2px;background:var(--red);transform:scaleX(0);transition:.25s}.tab:hover,.tab.active{color:#fff}.tab:hover:after,.tab.active:after{transform:scaleX(1)}main{width:min(1300px,90%);margin:auto;padding:65px 0}.hero h1{font-size:clamp(50px,8vw,100px);line-height:.9;margin:0 0 20px;letter-spacing:-.06em}.red{color:var(--red)}.muted{color:var(--muted);line-height:1.8}.toolbar,.row{display:flex;gap:10px;align-items:center}.toolbar{margin:25px 0}.input,.select,.textarea{background:#0b0b0b;border:1px solid var(--line);color:#fff;border-radius:10px;padding:13px;outline:0}.input:focus,.select:focus,.textarea:focus{border-color:#663030}.input{width:100%}.button{border:1px solid var(--line);background:#111;color:#fff;border-radius:10px;padding:12px 15px;font-size:10px;font-weight:800}.button:hover{border-color:#7d2525}.button.redbtn{background:var(--red);border-color:var(--red)}.button.danger{border-color:#6e2222;color:#ff5b5b}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden}.card img{width:100%;height:250px;object-fit:cover;display:block}.cardbody{padding:20px}.card h3{margin:0 0 10px}.stats{color:#777;font-size:10px;margin:12px 0}.dash{display:grid;grid-template-columns:230px 1fr;gap:20px}.side,.panel{background:#0b0b0b;border:1px solid var(--line);border-radius:15px}.side{padding:15px;height:max-content}.side button{display:block;width:100%;text-align:left;border:0;background:none;color:#777;padding:13px;border-radius:8px;font-weight:800;font-size:10px}.side button.active,.side button:hover{background:#170808;color:#fff}.panel{padding:22px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.formgrid .full{grid-column:1/-1}.textarea{width:100%;min-height:110px;resize:vertical;text-transform:none}.image-row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:8px}.image-preview{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.image-preview img{width:90px;height:70px;object-fit:cover;border-radius:7px;border:1px solid var(--line)}.log{padding:13px;border-bottom:1px solid var(--line);font-size:10px}.modal{position:fixed;inset:0;background:#000d;display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}.modalbox{width:min(1000px,100%);max-height:90vh;overflow:auto;background:#090909;border:1px solid var(--line);border-radius:16px;padding:20px}.viewer{position:relative;background:#000;height:420px}.viewer img{width:100%;height:100%;object-fit:contain}.arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid #333;background:#000b;color:#fff}.prev{left:12px}.next{right:12px}.descbox{margin-top:20px;display:grid;gap:12px}.section{padding:16px;border:1px solid var(--line);border-radius:10px}.section h4{margin:0 0 8px;color:var(--red);font-size:10px}.section p,.section li{color:#aaa;font-size:11px;line-height:1.8;text-transform:none}.comments{margin-top:20px}.comment{padding:12px;border-bottom:1px solid var(--line);font-size:10px}.login{width:min(430px,100%);margin:80px auto}.login h1{font-size:38px}.small{font-size:9px;color:#666}.account-box{margin-top:15px;padding:15px;border:1px dashed #542020;border-radius:10px}.account-value{display:block;background:#050505;padding:10px;margin:6px 0;border-radius:7px;word-break:break-all;color:#ff7777}.footer{padding:40px;text-align:center;color:#555;border-top:1px solid var(--line);font-size:9px}
-@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}.dash{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.viewer{height:300px}.tabs{gap:10px}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}.nav{padding:0 18px}.brand{font-size:11px}.tab{font-size:9px}}
-</style></head>
-<body>
-<nav class="nav"><div class="brand">THE DARK <span class="red">ARCHIVE</span></div><div class="tabs"><button class="tab active" onclick="page('home',this)">HOME</button><button class="tab" onclick="page('hall',this)">HALL OF FAME</button><button class="tab" onclick="page('login',this)">LOGIN</button></div></nav>
-<section id="home" class="page"><main class="hero"><p class="red">THE COLLECTION</p><h1>THE DARK<br><span class="red">ARCHIVE</span></h1><p class="muted">A RESPONSIVE DIGITAL ARCHIVE FOR ORGANIZED ENTRIES, MULTIPLE IMAGES, DESCRIPTIONS, COMMENTS, LIKES AND ADMIN ACTIVITY LOGS.</p><button class="button redbtn" onclick="page('hall')">EXPLORE ARCHIVE →</button></main></section>
-<section id="hall" class="page hidden"><main><div class="row" style="justify-content:space-between"><div><p class="red">THE COLLECTION</p><h1>HALL OF FAME</h1></div><select id="sort" class="select" onchange="loadEntries()"><option value="latest">LATEST</option><option value="likes">TOP LIKES</option><option value="comments">TOP COMMENTS</option></select></div><div class="toolbar"><input id="search" class="input" placeholder="SEARCH THE DARK ARCHIVE..." oninput="renderEntries()"></div><div id="entries" class="grid"></div></main></section>
-<section id="login" class="page hidden"><main class="login"><p class="red">SECURE ACCESS</p><h1>LOGIN</h1><p class="muted">ADMIN CREDENTIALS ARE VERIFIED SERVER-SIDE. THEY ARE NOT STORED IN THIS HTML FILE.</p><input id="user" class="input" placeholder="USERNAME"><br><br><input id="pass" class="input" type="password" placeholder="PASSWORD"><br><br><button class="button redbtn" onclick="login()">LOGIN</button><div id="createArea" class="account-box"><b>FIRST RUN?</b><p class="small">THE SERVER CAN GENERATE THE INITIAL ADMIN ACCOUNT. THE PASSWORD IS SHOWN ONCE.</p><button class="button" onclick="generateAccount()">GENERATE ACCOUNT</button><div id="generated"></div></div><p id="loginMsg" class="small"></p></main></section>
-<section id="dashboard" class="page hidden"><main><div class="row" style="justify-content:space-between"><div><p class="red">CONTROL CENTER</p><h1>DASHBOARD</h1><p class="small" id="who"></p></div><button class="button" onclick="logout()">LOGOUT</button></div><div class="dash"><aside class="side"><button class="active" onclick="dashTab('create',this)">CREATE ENTRY</button><button onclick="dashTab('entries',this)">MANAGE ENTRIES</button><button onclick="dashTab('logs',this)">ACTIVITY LOGS</button></aside><div class="panel"><div id="createPanel"><h2>CREATE HALL OF FAME ENTRY</h2><div class="formgrid"><input id="fTitle" class="input full" placeholder="TITLE"><textarea id="fOverview" class="textarea full" placeholder="OVERVIEW"></textarea><textarea id="fKnown" class="textarea" placeholder="KNOWN FOR — ONE ITEM PER LINE"></textarea><textarea id="fBackground" class="textarea" placeholder="BACKGROUND"></textarea><textarea id="fTimeline" class="textarea" placeholder="TIMELINE — YEAR | EVENT, ONE PER LINE"></textarea><textarea id="fAdditional" class="textarea" placeholder="ADDITIONAL INFORMATION"></textarea><textarea id="fSource" class="textarea full" placeholder="SOURCES / NOTES"></textarea></div><h3>PICTURES</h3><div id="imageInputs"></div><button class="button" onclick="addImageInput()">+ ADD PICTURE</button> <button class="button redbtn" onclick="createEntry()">CREATE ENTRY</button><p id="createMsg" class="small"></p></div><div id="entriesPanel" class="hidden"><h2>MANAGE ENTRIES</h2><div id="manage"></div></div><div id="logsPanel" class="hidden"><h2>ACTIVITY LOGS</h2><div id="logs"></div></div></div></div></main></section>
-<div id="modal" class="modal hidden" onclick="if(event.target===this)closeModal()"><div class="modalbox"><div class="row" style="justify-content:space-between"><h2 id="mTitle"></h2><button class="button" onclick="closeModal()">CLOSE</button></div><div class="viewer"><img id="mImg"><button class="arrow prev" onclick="prevImg()">‹</button><button class="arrow next" onclick="nextImg()">›</button></div><div id="mDesc" class="descbox"></div><div class="comments"><h3>COMMENTS (<span id="mCount">0</span>)</h3><div class="row"><input id="comment" class="input" placeholder="WRITE A COMMENT..."><button class="button redbtn" onclick="comment()">POST</button></div><div id="commentList"></div></div></div></div>
-<footer class="footer">THE DARK ARCHIVE<br><br>DEVELOPED BY <span class="red">FERDZ.CLUB</span></footer>
-<script>
-let token=localStorage.getItem('da_token')||'',entries=[],current=null,imgIndex=0;const $=id=>document.getElementById(id);
-function page(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));$(id).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');if(id==='hall')loadEntries();if(id==='login'&&token)checkMe();}
-async function api(url,opt={}){opt.headers={...(opt.headers||{}),...(token?{Authorization:'Bearer '+token}:{})};if(opt.body&&typeof opt.body!=='string'){opt.headers['Content-Type']='application/json';opt.body=JSON.stringify(opt.body)}const r=await fetch(url,opt);const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'REQUEST FAILED');return d}
-async function login(){try{const d=await api('/api/auth/login',{method:'POST',body:{username:$('user').value,password:$('pass').value}});token=d.token;localStorage.setItem('da_token',token);showDashboard(d.user)}catch(e){$('loginMsg').textContent=e.message}}
 
-async function checkMe(){try{showDashboard((await api('/api/me')).user)}catch{token='';localStorage.removeItem('da_token')}}
-function showDashboard(u){document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));$('dashboard').classList.remove('hidden');$('who').textContent='SIGNED IN AS '+u.username+' / '+u.role;loadEntries();}
-async function logout(){try{await api('/api/auth/logout',{method:'POST'})}catch{}token='';localStorage.removeItem('da_token');page('home')}
-function dashTab(which,btn){document.querySelectorAll('.side button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');$('createPanel').classList.toggle('hidden',which!=='create');$('entriesPanel').classList.toggle('hidden',which!=='entries');$('logsPanel').classList.toggle('hidden',which!=='logs');if(which==='entries')renderManage();if(which==='logs')loadLogs()}
-function addImageInput(){const d=document.createElement('div');d.className='image-row';d.innerHTML='<input class="input image-input" placeholder="IMAGE URL"><button class="button danger" onclick="this.parentElement.remove()">REMOVE</button>';$('imageInputs').appendChild(d)}addImageInput();
-async function createEntry(){try{const images=[...document.querySelectorAll('.image-input')].map(x=>x.value.trim()).filter(Boolean);const known=$('fKnown').value.split('\n').map(x=>x.trim()).filter(Boolean);const timeline=$('fTimeline').value.split('\n').map(x=>{const [year,...rest]=x.split('|');return {year:(year||'').trim(),text:rest.join('|').trim()}}).filter(x=>x.year||x.text);await api('/api/entries',{method:'POST',body:{title:$('fTitle').value,overview:$('fOverview').value,knownFor:known,background:$('fBackground').value,timeline,additional:$('fAdditional').value,source:$('fSource').value,images}});$('createMsg').textContent='ENTRY CREATED';loadEntries()}catch(e){$('createMsg').textContent=e.message}}
-async function loadEntries(){entries=await fetch('/api/entries').then(r=>r.json());const s=$('sort').value;if(s==='likes')entries.sort((a,b)=>b.likeCount-a.likeCount);if(s==='comments')entries.sort((a,b)=>b.commentCount-a.commentCount);renderEntries();}
-function renderEntries(){const q=($('search')?.value||'').toLowerCase();$('entries').innerHTML=entries.filter(e=>(e.title+' '+e.overview+' '+e.background).toLowerCase().includes(q)).map(e=>'<article class="card"><img src="'+(e.images?.[0]||'')+'"><div class="cardbody"><h3>'+esc(e.title)+'</h3><p class="muted">'+esc(e.overview)+'</p><div class="stats">♥ '+e.likeCount+' LIKES &nbsp; 💬 '+e.commentCount+' COMMENTS</div><button class="button" onclick="openEntry(\''+e.id+'\')">VIEW DESCRIPTION →</button></div></article>').join('')}
-function renderManage(){$('manage').innerHTML=entries.map(e=>'<div class="log"><b>'+esc(e.title)+'</b> — '+e.likeCount+' LIKES / '+e.commentCount+' COMMENTS <button class="button danger" onclick="deleteEntry(\''+e.id+'\')">DELETE</button></div>').join('')}
-async function deleteEntry(id){if(!confirm('DELETE THIS ENTRY?'))return;await api('/api/entries/'+id,{method:'DELETE'});loadEntries();renderManage()}
-async function loadLogs(){const l=await api('/api/logs');$('logs').innerHTML=l.map(x=>'<div class="log"><b>'+esc(x.action)+'</b> — '+esc(x.username)+' — '+esc(x.detail)+'<br><span class="small">'+esc(new Date(x.at).toLocaleString())+'</span></div>').join('')}
-function openEntry(id){current=entries.find(e=>e.id===id);imgIndex=0;renderModal();$('modal').classList.remove('hidden')}
-function renderModal(){const e=current;$('mTitle').textContent=e.title;$('mImg').src=e.images?.[imgIndex]||'';$('mDesc').innerHTML='<div class="section"><h4>OVERVIEW</h4><p>'+esc(e.overview)+'</p></div><div class="section"><h4>KNOWN FOR</h4><ul>'+((e.knownFor||[]).map(x=>'<li>'+esc(x)+'</li>').join(''))+'</ul></div><div class="section"><h4>BACKGROUND</h4><p>'+esc(e.background||'')+'</p></div><div class="section"><h4>TIMELINE</h4>'+((e.timeline||[]).map(x=>'<p><b class="red">'+esc(x.year)+'</b> — '+esc(x.text)+'</p>').join(''))+'</div><div class="section"><h4>ADDITIONAL INFORMATION</h4><p>'+esc(e.additional||'')+'</p></div><div class="section"><h4>SOURCES / NOTES</h4><p>'+esc(e.source||'')+'</p></div>';$('mCount').textContent=e.commentCount;renderComments()}
-function nextImg(){if(!current?.images?.length)return;imgIndex=(imgIndex+1)%current.images.length;renderModal()}function prevImg(){if(!current?.images?.length)return;imgIndex=(imgIndex-1+current.images.length)%current.images.length;renderModal()}function closeModal(){$('modal').classList.add('hidden')}
-async function comment(){const t=$('comment').value.trim();if(!t||!current)return;const d=await api('/api/entries/'+current.id+'/comments',{method:'POST',body:{text:t}});current.comments=d.comments;current.commentCount=d.comments.length;$('comment').value='';renderModal();loadEntries()}
-async function like(id){await api('/api/entries/'+id+'/like',{method:'POST'});loadEntries()}
-function renderComments(){if(!current)return;$('commentList').innerHTML=(current.comments||[]).slice().reverse().map(c=>'<div class="comment">'+esc(c.text)+'<br><span class="small">'+new Date(c.at).toLocaleString()+'</span></div>').join('')}
-function esc(s){const d=document.createElement('div');d.textContent=s??'';return d.innerHTML}
-</script></body></html>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>THE DARK ARCHIVE</title>
+
+    <!-- FAVICON -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="https://file.garden/aTzT5J7_xC8SSTd2/ChatGPT_Image_Sep_26__2026__01_33_06_PM-removebg-preview.png"
+    >
+
+    <link
+        rel="shortcut icon"
+        href="https://file.garden/aTzT5J7_xC8SSTd2/ChatGPT_Image_Sep_26__2026__01_33_06_PM-removebg-preview.png"
+    >
+
+    <!-- FONTS -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+
+            --bg: #050505;
+            --bg-2: #080808;
+
+            --surface: #0c0c0c;
+            --surface-2: #111111;
+
+            --white: #f4f4f4;
+
+            --gray: #858585;
+            --gray-2: #5a5a5a;
+
+            --border: rgba(255,255,255,.075);
+
+            --border-hover:
+                rgba(255,48,48,.35);
+
+            --red: #ff3030;
+
+            --red-dark: #d71919;
+
+            --red-soft:
+                rgba(255,48,48,.10);
+
+            --radius: 17px;
+
+        }
+
+
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% -20%,
+                    rgba(255,48,48,.07),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    180deg,
+                    var(--bg),
+                    var(--bg-2)
+                );
+
+            color: var(--white);
+
+            font-family:
+                "Inter",
+                sans-serif;
+
+            overflow-x: hidden;
+
+        }
+
+
+        body,
+        button,
+        input,
+        textarea,
+        select {
+
+            text-transform: uppercase;
+
+        }
+
+
+        button,
+        input,
+        textarea,
+        select {
+
+            font-family:
+                "Inter",
+                sans-serif;
+
+        }
+
+
+        button {
+
+            cursor: pointer;
+
+        }
+
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+
+        /* =========================================
+           BACKGROUND
+        ========================================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(255,255,255,.012) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.012) 1px,
+                    transparent 1px
+                );
+
+            background-size: 70px 70px;
+
+            opacity: .35;
+
+            z-index: -1;
+
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            width: 100%;
+
+            height: 78px;
+
+            padding:
+                0 6%;
+
+            background:
+                rgba(5,5,5,.78);
+
+            border-bottom:
+                1px solid var(--border);
+
+            backdrop-filter:
+                blur(20px);
+
+            -webkit-backdrop-filter:
+                blur(20px);
+
+        }
+
+
+        .nav-inner {
+
+            width: 100%;
+
+            max-width: 1500px;
+
+            height: 100%;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+        }
+
+
+        .nav-logo {
+
+            width: 52px;
+
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transition:
+                .3s ease;
+
+        }
+
+
+        .nav-logo:hover {
+
+            transform:
+                scale(1.06);
+
+            opacity: .85;
+
+        }
+
+
+        .nav-logo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================================
+           NAV TABS
+        ========================================= */
+
+        .nav-tabs {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 34px;
+
+        }
+
+
+        .nav-tab {
+
+            position: relative;
+
+            height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: var(--gray);
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: .03em;
+
+            transition:
+                color .25s ease;
+
+        }
+
+
+        .nav-tab::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 18px;
+
+            height: 2px;
+
+            background:
+                var(--red);
+
+            transform:
+                scaleX(0);
+
+            transform-origin:
+                center;
+
+            transition:
+                transform .3s ease;
+
+        }
+
+
+        .nav-tab:hover {
+
+            color:
+                var(--white);
+
+        }
+
+
+        .nav-tab:hover::after,
+        .nav-tab.active::after {
+
+            transform:
+                scaleX(1);
+
+        }
+
+
+        .nav-tab.active {
+
+            color:
+                var(--white);
+
+        }
+
+
+        /* =========================================
+           PAGE
+        ========================================= */
+
+        .page {
+
+            display: none;
+
+            min-height:
+                calc(100vh - 78px);
+
+        }
+
+
+        .page.active {
+
+            display: block;
+
+            animation:
+                pageIn .4s ease;
+
+        }
+
+
+        @keyframes pageIn {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(10px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        .container {
+
+            width:
+                min(1380px, 88%);
+
+            margin:
+                auto;
+
+        }
+
+
+        /* =========================================
+           HOME
+        ========================================= */
+
+        .home {
+
+            min-height:
+                calc(100vh - 78px);
+
+            display: flex;
+
+            align-items: center;
+
+            padding:
+                90px 0;
+
+        }
+
+
+        .home-content {
+
+            width: 100%;
+
+            text-align: center;
+
+        }
+
+
+        .home-logo {
+
+            width:
+                min(480px, 80vw);
+
+            max-height:
+                310px;
+
+            object-fit:
+                contain;
+
+            display:
+                block;
+
+            margin:
+                0 auto 42px;
+
+            filter:
+                drop-shadow(
+                    0 20px 60px
+                    rgba(0,0,0,.65)
+                );
+
+        }
+
+
+        .home-title {
+
+            font-family:
+                "Manrope",
+                sans-serif;
+
+            font-size:
+                clamp(43px, 7vw, 82px);
+
+            line-height:
+                .95;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                -.055em;
+
+            margin-bottom:
+                27px;
+
+        }
+
+
+        .home-title span {
+
+            color:
+                var(--red);
+
+        }
+
+
+        .home-description {
+
+            max-width:
+                720px;
+
+            margin:
+                auto;
+
+            color:
+                var(--gray);
+
+            font-size:
+                14px;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        .home-button {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                9px;
+
+            margin-top:
+                34px;
+
+            min-height:
+                44px;
+
+            padding:
+                0 18px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            color:
+                var(--white);
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .home-button:hover {
+
+            border-color:
+                var(--border-hover);
+
+            background:
+                var(--red-soft);
+
+            color:
+                var(--red);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           HALL
+        ========================================= */
+
+        .hall {
+
+            padding:
+                72px 0 100px;
+
+        }
+
+
+        .hall-header {
+
+            display:
+                flex;
+
+            align-items:
+                flex-end;
+
+            justify-content:
+                space-between;
+
+            gap:
+                40px;
+
+            padding-bottom:
+                30px;
+
+            margin-bottom:
+                25px;
+
+            border-bottom:
+                1px solid
+                var(--border);
+
+        }
+
+
+        .hall-title {
+
+            font-family:
+                "Manrope",
+                sans-serif;
+
+            font-size:
+                clamp(46px, 6vw, 76px);
+
+            line-height:
+                1;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                -.055em;
+
+        }
+
+
+        .hall-subtitle {
+
+            max-width:
+                430px;
+
+            color:
+                var(--gray);
+
+            font-size:
+                12px;
+
+            line-height:
+                1.75;
+
+        }
+
+
+        /* =========================================
+           TOOLBAR
+        ========================================= */
+
+        .toolbar {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                22px;
+
+        }
+
+
+        .search-wrap {
+
+            position:
+                relative;
+
+            flex:
+                1;
+
+            max-width:
+                620px;
+
+        }
+
+
+        .search-icon {
+
+            position:
+                absolute;
+
+            left:
+                15px;
+
+            top:
+                50%;
+
+            transform:
+                translateY(-50%);
+
+            color:
+                var(--gray);
+
+            font-size:
+                16px;
+
+            pointer-events:
+                none;
+
+        }
+
+
+        .search-input {
+
+            width:
+                100%;
+
+            height:
+                46px;
+
+            padding:
+                0 16px 0 42px;
+
+            outline:
+                none;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            color:
+                var(--white);
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .search-input::placeholder {
+
+            color:
+                var(--gray-2);
+
+        }
+
+
+        .search-input:focus {
+
+            border-color:
+                var(--border-hover);
+
+            background:
+                rgba(255,255,255,.04);
+
+        }
+
+
+        .sort-select {
+
+            height:
+                46px;
+
+            min-width:
+                185px;
+
+            padding:
+                0 14px;
+
+            outline:
+                none;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            background:
+                var(--surface);
+
+            color:
+                var(--white);
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .sort-select:focus {
+
+            border-color:
+                var(--border-hover);
+
+        }
+
+
+        .sort-select option {
+
+            background:
+                #111;
+
+            color:
+                white;
+
+        }
+
+
+        /* =========================================
+           RESULT COUNT
+        ========================================= */
+
+        .results-info {
+
+            margin-bottom:
+                17px;
+
+            color:
+                var(--gray-2);
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                .05em;
+
+        }
+
+
+        /* =========================================
+           CARDS
+        ========================================= */
+
+        .entries-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap:
+                21px;
+
+        }
+
+
+        .entry-card {
+
+            overflow:
+                hidden;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,.025),
+                    rgba(255,255,255,.01)
+                ),
+                var(--surface);
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                var(--radius);
+
+            transition:
+                transform .35s ease,
+                border-color .35s ease,
+                box-shadow .35s ease;
+
+        }
+
+
+        .entry-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            border-color:
+                var(--border-hover);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.5);
+
+        }
+
+
+        .entry-image {
+
+            position:
+                relative;
+
+            width:
+                100%;
+
+            height:
+                285px;
+
+            overflow:
+                hidden;
+
+            background:
+                #090909;
+
+            border-bottom:
+                1px solid
+                var(--border);
+
+        }
+
+
+        .entry-image img {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            display:
+                block;
+
+            object-fit:
+                cover;
+
+            transition:
+                transform .6s
+                cubic-bezier(.2,.7,.2,1);
+
+        }
+
+
+        .entry-card:hover
+        .entry-image img {
+
+            transform:
+                scale(1.045);
+
+        }
+
+
+        .entry-number {
+
+            position:
+                absolute;
+
+            top:
+                13px;
+
+            left:
+                13px;
+
+            z-index:
+                2;
+
+            padding:
+                7px 9px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.1);
+
+            border-radius:
+                7px;
+
+            background:
+                rgba(0,0,0,.65);
+
+            backdrop-filter:
+                blur(10px);
+
+            color:
+                white;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .entry-content {
+
+            padding:
+                23px;
+
+        }
+
+
+        .entry-content h3 {
+
+            font-family:
+                "Manrope",
+                sans-serif;
+
+            font-size:
+                22px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                -.025em;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .entry-content p {
+
+            color:
+                var(--gray);
+
+            font-size:
+                11px;
+
+            line-height:
+                1.7;
+
+            min-height:
+                40px;
+
+        }
+
+
+        .entry-stats {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                16px;
+
+            margin-top:
+                18px;
+
+            color:
+                var(--gray-2);
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .entry-stat {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                5px;
+
+        }
+
+
+        .like-stat {
+
+            color:
+                #ff5555;
+
+        }
+
+
+        .entry-description {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                8px;
+
+            min-height:
+                38px;
+
+            margin-top:
+                20px;
+
+            padding:
+                0 13px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                9px;
+
+            background:
+                rgba(255,255,255,.018);
+
+            color:
+                var(--white);
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .entry-description:hover {
+
+            color:
+                var(--red);
+
+            background:
+                var(--red-soft);
+
+            border-color:
+                var(--border-hover);
+
+        }
+
+
+        .arrow {
+
+            color:
+                var(--red);
+
+            font-size:
+                14px;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .entry-description:hover
+        .arrow {
+
+            transform:
+                translateX(3px);
+
+        }
+
+
+        /* =========================================
+           NO RESULTS
+        ========================================= */
+
+        .no-results {
+
+            display:
+                none;
+
+            padding:
+                80px 20px;
+
+            text-align:
+                center;
+
+            border:
+                1px dashed
+                var(--border);
+
+            border-radius:
+                16px;
+
+            color:
+                var(--gray-2);
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .no-results.show {
+
+            display:
+                block;
+
+        }
+
+
+        /* =========================================
+           MODAL
+        ========================================= */
+
+        .modal {
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                5000;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                20px;
+
+            background:
+                rgba(0,0,0,.84);
+
+            backdrop-filter:
+                blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
+
+            opacity:
+                0;
+
+            visibility:
+                hidden;
+
+            transition:
+                .3s ease;
+
+        }
+
+
+        .modal.show {
+
+            opacity:
+                1;
+
+            visibility:
+                visible;
+
+        }
+
+
+        .modal-box {
+
+            position:
+                relative;
+
+            width:
+                min(1050px, 100%);
+
+            max-height:
+                92vh;
+
+            overflow:
+                hidden;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            background:
+                #0a0a0a;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                19px;
+
+            box-shadow:
+                0 40px 120px
+                rgba(0,0,0,.8);
+
+            transform:
+                translateY(20px)
+                scale(.97);
+
+            transition:
+                .35s ease;
+
+        }
+
+
+        .modal.show .modal-box {
+
+            transform:
+                translateY(0)
+                scale(1);
+
+        }
+
+
+        /* =========================================
+           CLOSE BUTTON
+        ========================================= */
+
+        .modal-close {
+
+            position:
+                absolute;
+
+            top:
+                13px;
+
+            right:
+                13px;
+
+            z-index:
+                30;
+
+            width:
+                38px;
+
+            height:
+                38px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(0,0,0,.7);
+
+            color:
+                white;
+
+            font-size:
+                19px;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .modal-close:hover {
+
+            background:
+                var(--red);
+
+            border-color:
+                var(--red);
+
+        }
+
+
+        /* =========================================
+           IMAGE VIEWER
+        ========================================= */
+
+        .viewer {
+
+            position:
+                relative;
+
+            width:
+                100%;
+
+            height:
+                450px;
+
+            background:
+                #040404;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .viewer img {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            display:
+                block;
+
+            object-fit:
+                contain;
+
+        }
+
+
+        .viewer-button {
+
+            position:
+                absolute;
+
+            top:
+                50%;
+
+            transform:
+                translateY(-50%);
+
+            width:
+                44px;
+
+            height:
+                44px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(0,0,0,.65);
+
+            color:
+                white;
+
+            font-size:
+                21px;
+
+            backdrop-filter:
+                blur(10px);
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .viewer-button:hover {
+
+            background:
+                var(--red);
+
+            border-color:
+                var(--red);
+
+        }
+
+
+        .viewer-prev {
+
+            left:
+                18px;
+
+        }
+
+
+        .viewer-next {
+
+            right:
+                18px;
+
+        }
+
+
+        .image-counter {
+
+            position:
+                absolute;
+
+            left:
+                50%;
+
+            bottom:
+                14px;
+
+            transform:
+                translateX(-50%);
+
+            padding:
+                7px 11px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.1);
+
+            border-radius:
+                7px;
+
+            background:
+                rgba(0,0,0,.7);
+
+            color:
+                white;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =========================================
+           MODAL CONTENT
+        ========================================= */
+
+        .modal-content {
+
+            padding:
+                24px 27px 28px;
+
+            overflow-y:
+                auto;
+
+        }
+
+
+        .modal-label {
+
+            color:
+                var(--red);
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                .18em;
+
+            margin-bottom:
+                9px;
+
+        }
+
+
+        .modal-title {
+
+            font-family:
+                "Manrope",
+                sans-serif;
+
+            font-size:
+                31px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                -.04em;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        /* =========================================
+           MODAL BUTTONS
+        ========================================= */
+
+        .modal-actions {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            margin-bottom:
+                21px;
+
+        }
+
+
+        .like-button {
+
+            min-height:
+                39px;
+
+            padding:
+                0 14px;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                7px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                9px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            color:
+                var(--gray);
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .like-button:hover,
+        .like-button.liked {
+
+            color:
+                #ff4d4d;
+
+            background:
+                var(--red-soft);
+
+            border-color:
+                rgba(255,48,48,.3);
+
+        }
+
+
+        /* =========================================
+           MODAL TABS
+        ========================================= */
+
+        .modal-tabs {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                5px;
+
+            padding:
+                4px;
+
+            margin-bottom:
+                21px;
+
+            width:
+                fit-content;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            background:
+                rgba(255,255,255,.018);
+
+        }
+
+
+        .modal-tab {
+
+            min-height:
+                35px;
+
+            padding:
+                0 13px;
+
+            border:
+                1px solid
+                transparent;
+
+            border-radius:
+                7px;
+
+            background:
+                transparent;
+
+            color:
+                var(--gray-2);
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .modal-tab:hover {
+
+            color:
+                var(--white);
+
+        }
+
+
+        .modal-tab.active {
+
+            color:
+                white;
+
+            background:
+                var(--red-soft);
+
+            border-color:
+                rgba(255,48,48,.2);
+
+        }
+
+
+        .tab-panel {
+
+            display:
+                none;
+
+        }
+
+
+        .tab-panel.active {
+
+            display:
+                block;
+
+        }
+
+
+        .description-text {
+
+            color:
+                var(--gray);
+
+            font-size:
+                12px;
+
+            line-height:
+                1.85;
+
+            white-space:
+                pre-line;
+
+        }
+
+
+        /* =========================================
+           COMMENTS
+        ========================================= */
+
+        .comment-form {
+
+            display:
+                flex;
+
+            gap:
+                9px;
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        .comment-input {
+
+            flex:
+                1;
+
+            min-height:
+                44px;
+
+            padding:
+                12px 13px;
+
+            resize:
+                vertical;
+
+            outline:
+                none;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                9px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            color:
+                white;
+
+            font-size:
+                9px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .comment-input:focus {
+
+            border-color:
+                var(--border-hover);
+
+        }
+
+
+        .comment-input::placeholder {
+
+            color:
+                var(--gray-2);
+
+        }
+
+
+        .comment-submit {
+
+            min-width:
+                76px;
+
+            min-height:
+                44px;
+
+            padding:
+                0 15px;
+
+            border:
+                1px solid
+                var(--red);
+
+            border-radius:
+                9px;
+
+            background:
+                var(--red);
+
+            color:
+                white;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .comment-submit:hover {
+
+            background:
+                var(--red-dark);
+
+        }
+
+
+        .comments-list {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                9px;
+
+        }
+
+
+        .comment {
+
+            padding:
+                14px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            background:
+                rgba(255,255,255,.018);
+
+        }
+
+
+        .comment-top {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+            margin-bottom:
+                7px;
+
+        }
+
+
+        .comment-name {
+
+            color:
+                white;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .comment-date {
+
+            color:
+                var(--gray-2);
+
+            font-size:
+                7px;
+
+        }
+
+
+        .comment-text {
+
+            color:
+                var(--gray);
+
+            font-size:
+                10px;
+
+            line-height:
+                1.65;
+
+            text-transform:
+                none;
+
+        }
+
+
+        .empty-comments {
+
+            padding:
+                30px;
+
+            text-align:
+                center;
+
+            color:
+                var(--gray-2);
+
+            font-size:
+                9px;
+
+            font-weight:
+                700;
+
+            border:
+                1px dashed
+                var(--border);
+
+            border-radius:
+                10px;
+
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .footer {
+
+            padding:
+                43px 20px;
+
+            border-top:
+                1px solid
+                var(--border);
+
+            text-align:
+                center;
+
+            background:
+                rgba(0,0,0,.18);
+
+        }
+
+
+        .footer-name {
+
+            color:
+                var(--white);
+
+            font-family:
+                "Manrope",
+                sans-serif;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                .18em;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .footer-developer {
+
+            color:
+                var(--gray-2);
+
+            font-size:
+                8px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                .12em;
+
+        }
+
+
+        .footer-developer a {
+
+            color:
+                var(--red);
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .footer-developer a:hover {
+
+            color:
+                white;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1050px) {
+
+            .entries-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0,1fr)
+                    );
+
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                height:
+                    70px;
+
+                padding:
+                    0 20px;
+
+            }
+
+
+            .nav-logo {
+
+                width:
+                    43px;
+
+                height:
+                    43px;
+
+            }
+
+
+            .nav-tabs {
+
+                gap:
+                    20px;
+
+            }
+
+
+            .nav-tab {
+
+                height:
+                    70px;
+
+                font-size:
+                    9px;
+
+            }
+
+
+            .nav-tab::after {
+
+                bottom:
+                    15px;
+
+            }
+
+
+            .container {
+
+                width:
+                    calc(100% - 36px);
+
+            }
+
+
+            .home {
+
+                padding:
+                    70px 0;
+
+            }
+
+
+            .home-logo {
+
+                width:
+                    78vw;
+
+            }
+
+
+            .hall {
+
+                padding:
+                    55px 0 70px;
+
+            }
+
+
+            .hall-header {
+
+                display:
+                    block;
+
+            }
+
+
+            .hall-subtitle {
+
+                margin-top:
+                    17px;
+
+            }
+
+
+            .toolbar {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+            }
+
+
+            .search-wrap {
+
+                max-width:
+                    none;
+
+            }
+
+
+            .sort-select {
+
+                width:
+                    100%;
+
+            }
+
+
+            .entries-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .entry-image {
+
+                height:
+                    280px;
+
+            }
+
+
+            .viewer {
+
+                height:
+                    300px;
+
+            }
+
+
+            .modal-content {
+
+                padding:
+                    21px;
+
+            }
+
+
+            .modal-title {
+
+                font-size:
+                    27px;
+
+            }
+
+
+            .comment-form {
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .comment-submit {
+
+                width:
+                    100%;
+
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .nav-tabs {
+
+                gap:
+                    14px;
+
+            }
+
+
+            .nav-tab {
+
+                font-size:
+                    8px;
+
+            }
+
+
+            .entry-image {
+
+                height:
+                    240px;
+
+            }
+
+
+            .viewer {
+
+                height:
+                    250px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-inner">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="#"
+                class="nav-logo"
+                onclick="
+                    showPage(
+                        'hall',
+                        document.querySelectorAll('.nav-tab')[1]
+                    );
+                    return false;
+                "
+            >
+
+                <img
+                    src="https://file.garden/aTzT5J7_xC8SSTd2/ChatGPT_Image_Sep_26__2026__01_33_06_PM-removebg-preview.png"
+                    alt="THE DARK ARCHIVE"
+                >
+
+            </a>
+
+
+            <!-- TABS -->
+
+            <nav class="nav-tabs">
+
+                <a
+                    href="#"
+                    class="nav-tab active"
+                    onclick="
+                        showPage('home', this);
+                        return false;
+                    "
+                >
+                    HOME
+                </a>
+
+
+                <a
+                    href="#"
+                    class="nav-tab"
+                    onclick="
+                        showPage('hall', this);
+                        return false;
+                    "
+                >
+                    HALL OF FAME
+                </a>
+
+            </nav>
+
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         HOME
+    ========================================== -->
+
+    <main
+        id="home"
+        class="page active"
+    >
+
+        <section class="home">
+
+            <div class="container">
+
+                <div class="home-content">
+
+
+                    <img
+                        class="home-logo"
+                        src="https://file.garden/aTzT5J7_xC8SSTd2/ChatGPT_Image_Sep_26__2026__01_33_06_PM-removebg-preview.png"
+                        alt="THE DARK ARCHIVE"
+                    >
+
+
+                    <h1 class="home-title">
+
+                        
+                        <span></span>
+
+                    </h1>
+
+
+                    <p class="home-description">
+
+                        A CURATED DIGITAL ARCHIVE OF
+                        ENTRIES, STORIES, MOMENTS, AND
+                        INFORMATION. SEARCH THE COLLECTION,
+                        EXPLORE ENTRIES, AND DISCOVER
+                        THEIR STORIES.
+
+                    </p>
+
+
+                    <a
+                        href="#"
+                        class="home-button"
+                        onclick="
+                            showPage(
+                                'hall',
+                                document.querySelectorAll('.nav-tab')[1]
+                            );
+                            return false;
+                        "
+                    >
+
+                        EXPLORE HOF
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         HALL OF FAME
+    ========================================== -->
+
+    <main
+        id="hall"
+        class="page"
+    >
+
+        <section class="hall">
+
+            <div class="container">
+
+
+                <!-- HEADER -->
+
+                <div class="hall-header">
+
+                    <h1 class="hall-title">
+
+                        HALL OF FAME
+
+                    </h1>
+
+
+                    <p class="hall-subtitle">
+
+                        EXPLORE THE DARK ARCHIVE.
+                        SEARCH ENTRIES, SORT BY LIKES
+                        OR COMMENTS, AND OPEN ANY ENTRY
+                        TO VIEW ITS COMPLETE INFORMATION.
+
+                    </p>
+
+                </div>
+
+
+                <!-- SEARCH / SORT -->
+
+                <div class="toolbar">
+
+
+                    <div class="search-wrap">
+
+                        <span class="search-icon">
+                            ⌕
+                        </span>
+
+
+                        <input
+                            id="searchInput"
+                            class="search-input"
+                            type="search"
+                            placeholder="SEARCH THE DARK ARCHIVE..."
+                            autocomplete="off"
+                            oninput="filterEntries()"
+                        >
+
+                    </div>
+
+
+                    <select
+                        id="sortSelect"
+                        class="sort-select"
+                        onchange="filterEntries()"
+                    >
+
+                        <option value="latest">
+                            LATEST
+                        </option>
+
+                        <option value="likes">
+                            TOP LIKES
+                        </option>
+
+                        <option value="comments">
+                            TOP COMMENTS
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+                <div
+                    id="resultsInfo"
+                    class="results-info"
+                >
+                    SHOWING 6 OF 6 ENTRIES
+                </div>
+
+
+                <!-- =================================
+                     ENTRIES
+                ================================== -->
+
+                <div
+                    id="entriesGrid"
+                    class="entries-grid"
+                >
+
+
+                    <!-- ENTRY 01 -->
+
+                    <article
+                        class="entry-card"
+                        data-id="1"
+                        data-date="6"
+                        data-title="EXAMPLE PERSON"
+                        data-description="SHORT INFORMATION ABOUT EXAMPLE PERSON."
+                    >
+
+                        <div class="entry-image">
+
+                            <div class="entry-number">
+                                ENTRY 01
+                            </div>
+
+                            <img
+                                src="YOUR_PICTURE_URL_1"
+                                alt="EXAMPLE PERSON"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="entry-content">
+
+                            <h3>
+                                EXAMPLE PERSON
+                            </h3>
+
+                            <p>
+                                SHORT INFORMATION ABOUT THIS ENTRY.
+                            </p>
+
+
+                            <div class="entry-stats">
+
+                                <span class="entry-stat like-stat">
+
+                                    ♥
+
+                                    <span class="like-number">
+                                        0
+                                    </span>
+
+                                    LIKES
+
+                                </span>
+
+
+                                <span class="entry-stat">
+
+                                    💬
+
+                                    <span class="comment-number">
+                                        0
+                                    </span>
+
+                                    COMMENTS
+
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                class="entry-description"
+                                onclick="openEntry(1)"
+                            >
+
+                                VIEW DESCRIPTION
+
+                                <span class="arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ENTRY 02 -->
+
+                    <article
+                        class="entry-card"
+                        data-id="2"
+                        data-date="5"
+                        data-title="EXAMPLE PERSON TWO"
+                        data-description="SHORT INFORMATION ABOUT EXAMPLE PERSON TWO."
+                    >
+
+                        <div class="entry-image">
+
+                            <div class="entry-number">
+                                ENTRY 02
+                            </div>
+
+                            <img
+                                src="YOUR_PICTURE_URL_2"
+                                alt="EXAMPLE PERSON TWO"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="entry-content">
+
+                            <h3>
+                                EXAMPLE PERSON TWO
+                            </h3>
+
+                            <p>
+                                SHORT INFORMATION ABOUT THIS ENTRY.
+                            </p>
+
+
+                            <div class="entry-stats">
+
+                                <span class="entry-stat like-stat">
+                                    ♥
+                                    <span class="like-number">0</span>
+                                    LIKES
+                                </span>
+
+
+                                <span class="entry-stat">
+                                    💬
+                                    <span class="comment-number">0</span>
+                                    COMMENTS
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                class="entry-description"
+                                onclick="openEntry(2)"
+                            >
+
+                                VIEW DESCRIPTION
+
+                                <span class="arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ENTRY 03 -->
+
+                    <article
+                        class="entry-card"
+                        data-id="3"
+                        data-date="4"
+                        data-title="EXAMPLE PERSON THREE"
+                        data-description="SHORT INFORMATION ABOUT EXAMPLE PERSON THREE."
+                    >
+
+                        <div class="entry-image">
+
+                            <div class="entry-number">
+                                ENTRY 03
+                            </div>
+
+                            <img
+                                src="YOUR_PICTURE_URL_3"
+                                alt="EXAMPLE PERSON THREE"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="entry-content">
+
+                            <h3>
+                                EXAMPLE PERSON THREE
+                            </h3>
+
+                            <p>
+                                SHORT INFORMATION ABOUT THIS ENTRY.
+                            </p>
+
+
+                            <div class="entry-stats">
+
+                                <span class="entry-stat like-stat">
+                                    ♥
+                                    <span class="like-number">0</span>
+                                    LIKES
+                                </span>
+
+
+                                <span class="entry-stat">
+                                    💬
+                                    <span class="comment-number">0</span>
+                                    COMMENTS
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                class="entry-description"
+                                onclick="openEntry(3)"
+                            >
+
+                                VIEW DESCRIPTION
+
+                                <span class="arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ENTRY 04 -->
+
+                    <article
+                        class="entry-card"
+                        data-id="4"
+                        data-date="3"
+                        data-title="EXAMPLE PERSON FOUR"
+                        data-description="SHORT INFORMATION ABOUT EXAMPLE PERSON FOUR."
+                    >
+
+                        <div class="entry-image">
+
+                            <div class="entry-number">
+                                ENTRY 04
+                            </div>
+
+                            <img
+                                src="YOUR_PICTURE_URL_4"
+                                alt="EXAMPLE PERSON FOUR"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="entry-content">
+
+                            <h3>
+                                EXAMPLE PERSON FOUR
+                            </h3>
+
+                            <p>
+                                SHORT INFORMATION ABOUT THIS ENTRY.
+                            </p>
+
+
+                            <div class="entry-stats">
+
+                                <span class="entry-stat like-stat">
+                                    ♥
+                                    <span class="like-number">0</span>
+                                    LIKES
+                                </span>
+
+
+                                <span class="entry-stat">
+                                    💬
+                                    <span class="comment-number">0</span>
+                                    COMMENTS
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                class="entry-description"
+                                onclick="openEntry(4)"
+                            >
+
+                                VIEW DESCRIPTION
+
+                                <span class="arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ENTRY 05 -->
+
+                    <article
+                        class="entry-card"
+                        data-id="5"
+                        data-date="2"
+                        data-title="EXAMPLE PERSON FIVE"
+                        data-description="SHORT INFORMATION ABOUT EXAMPLE PERSON FIVE."
+                    >
+
+                        <div class="entry-image">
+
+                            <div class="entry-number">
+                                ENTRY 05
+                            </div>
+
+                            <img
+                                src="YOUR_PICTURE_URL_5"
+                                alt="EXAMPLE PERSON FIVE"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="entry-content">
+
+                            <h3>
+                                EXAMPLE PERSON FIVE
+                            </h3>
+
+                            <p>
+                                SHORT INFORMATION ABOUT THIS ENTRY.
+                            </p>
+
+
+                            <div class="entry-stats">
+
+                                <span class="entry-stat like-stat">
+                                    ♥
+                                    <span class="like-number">0</span>
+                                    LIKES
+                                </span>
+
+
+                                <span class="entry-stat">
+                                    💬
+                                    <span class="comment-number">0</span>
+                                    COMMENTS
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                class="entry-description"
+                                onclick="openEntry(5)"
+                            >
+
+                                VIEW DESCRIPTION
+
+                                <span class="arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ENTRY 06 -->
+
+                    <article
+                        class="entry-card"
+                        data-id="6"
+                        data-date="1"
+                        data-title="EXAMPLE PERSON SIX"
+                        data-description="SHORT INFORMATION ABOUT EXAMPLE PERSON SIX."
+                    >
+
+                        <div class="entry-image">
+
+                            <div class="entry-number">
+                                ENTRY 06
+                            </div>
+
+                            <img
+                                src="YOUR_PICTURE_URL_6"
+                                alt="EXAMPLE PERSON SIX"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="entry-content">
+
+                            <h3>
+                                EXAMPLE PERSON SIX
+                            </h3>
+
+                            <p>
+                                SHORT INFORMATION ABOUT THIS ENTRY.
+                            </p>
+
+
+                            <div class="entry-stats">
+
+                                <span class="entry-stat like-stat">
+                                    ♥
+                                    <span class="like-number">0</span>
+                                    LIKES
+                                </span>
+
+
+                                <span class="entry-stat">
+                                    💬
+                                    <span class="comment-number">0</span>
+                                    COMMENTS
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                class="entry-description"
+                                onclick="openEntry(6)"
+                            >
+
+                                VIEW DESCRIPTION
+
+                                <span class="arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+
+                <div
+                    id="noResults"
+                    class="no-results"
+                >
+
+                    NO ENTRIES FOUND
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            <div class="footer-name">
+
+                THE DARK ARCHIVE
+
+            </div>
+
+
+            <div class="footer-developer">
+
+                DEVELOPED BY
+
+                <a
+                    href="https://ferdz.club"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    FERDZ.CLUB
+                </a>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =========================================
+         ENTRY MODAL
+    ========================================== -->
+
+    <div
+        id="entryModal"
+        class="modal"
+        onclick="closeOutside(event)"
+    >
+
+
+        <div class="modal-box">
+
+
+            <!-- CLOSE -->
+
+            <button
+                class="modal-close"
+                onclick="closeEntry()"
+                aria-label="CLOSE"
+            >
+                ×
+            </button>
+
+
+            <!-- IMAGE VIEWER -->
+
+            <div class="viewer">
+
+
+                <img
+                    id="viewerImage"
+                    src=""
+                    alt="ENTRY"
+                >
+
+
+                <button
+                    class="viewer-button viewer-prev"
+                    onclick="previousImage()"
+                    aria-label="PREVIOUS IMAGE"
+                >
+                    ‹
+                </button>
+
+
+                <button
+                    class="viewer-button viewer-next"
+                    onclick="nextImage()"
+                    aria-label="NEXT IMAGE"
+                >
+                    ›
+                </button>
+
+
+                <div
+                    id="imageCounter"
+                    class="image-counter"
+                >
+                    1 / 1
+                </div>
+
+
+            </div>
+
+
+            <!-- MODAL CONTENT -->
+
+            <div class="modal-content">
+
+
+                <div
+                    id="modalLabel"
+                    class="modal-label"
+                >
+                    ENTRY 01
+                </div>
+
+
+                <h2
+                    id="modalTitle"
+                    class="modal-title"
+                >
+                    ENTRY
+                </h2>
+
+
+                <!-- LIKE -->
+
+                <div class="modal-actions">
+
+                    <button
+                        id="modalLikeButton"
+                        class="like-button"
+                        onclick="toggleLike()"
+                    >
+
+                        ♥
+
+                        <span id="modalLikeCount">
+                            0
+                        </span>
+
+                        LIKES
+
+                    </button>
+
+                </div>
+
+
+                <!-- MODAL TABS -->
+
+                <div class="modal-tabs">
+
+
+                    <button
+                        id="descriptionTab"
+                        class="modal-tab active"
+                        onclick="
+                            switchModalTab('description')
+                        "
+                    >
+
+                        DESCRIPTION
+
+                    </button>
+
+
+                    <button
+                        id="commentsTab"
+                        class="modal-tab"
+                        onclick="
+                            switchModalTab('comments')
+                        "
+                    >
+
+                        COMMENTS
+
+                        (
+
+                        <span id="modalCommentCount">
+                            0
+                        </span>
+
+                        )
+
+                    </button>
+
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div
+                    id="descriptionPanel"
+                    class="tab-panel active"
+                >
+
+                    <p
+                        id="modalDescription"
+                        class="description-text"
+                    ></p>
+
+                </div>
+
+
+                <!-- COMMENTS -->
+
+                <div
+                    id="commentsPanel"
+                    class="tab-panel"
+                >
+
+
+                    <form
+                        class="comment-form"
+                        onsubmit="addComment(event)"
+                    >
+
+
+                        <textarea
+                            id="commentInput"
+                            class="comment-input"
+                            placeholder="WRITE A COMMENT..."
+                            maxlength="500"
+                            required
+                        ></textarea>
+
+
+                        <button
+                            type="submit"
+                            class="comment-submit"
+                        >
+
+                            POST
+
+                        </button>
+
+
+                    </form>
+
+
+                    <div
+                        id="commentsList"
+                        class="comments-list"
+                    ></div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+        /* =========================================
+           ENTRY DATA
+        ========================================= */
+
+        const entries = {
+
+
+            1: {
+
+                title:
+                    "EXAMPLE PERSON",
+
+                description:
+                    "THIS IS THE COMPLETE DESCRIPTION FOR ENTRY ONE. PUT THE FULL STORY, INFORMATION, BACKGROUND, DETAILS, OR ANY OTHER CONTENT HERE.",
+
+                images: [
+
+                    "YOUR_PICTURE_URL_1",
+
+                    "YOUR_PICTURE_URL_1_2",
+
+                    "YOUR_PICTURE_URL_1_3"
+
+                ]
+
+            },
+
+
+            2: {
+
+                title:
+                    "EXAMPLE PERSON TWO",
+
+                description:
+                    "THIS IS THE COMPLETE DESCRIPTION FOR ENTRY TWO.",
+
+                images: [
+
+                    "YOUR_PICTURE_URL_2",
+
+                    "YOUR_PICTURE_URL_2_2"
+
+                ]
+
+            },
+
+
+            3: {
+
+                title:
+                    "EXAMPLE PERSON THREE",
+
+                description:
+                    "THIS IS THE COMPLETE DESCRIPTION FOR ENTRY THREE.",
+
+                images: [
+
+                    "YOUR_PICTURE_URL_3",
+
+                    "YOUR_PICTURE_URL_3_2"
+
+                ]
+
+            },
+
+
+            4: {
+
+                title:
+                    "EXAMPLE PERSON FOUR",
+
+                description:
+                    "THIS IS THE COMPLETE DESCRIPTION FOR ENTRY FOUR.",
+
+                images: [
+
+                    "YOUR_PICTURE_URL_4",
+
+                    "YOUR_PICTURE_URL_4_2"
+
+                ]
+
+            },
+
+
+            5: {
+
+                title:
+                    "EXAMPLE PERSON FIVE",
+
+                description:
+                    "THIS IS THE COMPLETE DESCRIPTION FOR ENTRY FIVE.",
+
+                images: [
+
+                    "YOUR_PICTURE_URL_5",
+
+                    "YOUR_PICTURE_URL_5_2"
+
+                ]
+
+            },
+
+
+            6: {
+
+                title:
+                    "EXAMPLE PERSON SIX",
+
+                description:
+                    "THIS IS THE COMPLETE DESCRIPTION FOR ENTRY SIX.",
+
+                images: [
+
+                    "YOUR_PICTURE_URL_6",
+
+                    "YOUR_PICTURE_URL_6_2"
+
+                ]
+
+            }
+
+        };
+
+
+        /* =========================================
+           LOCAL STORAGE
+        ========================================= */
+
+        let likes =
+            JSON.parse(
+                localStorage.getItem(
+                    "darkArchiveLikes"
+                ) || "{}"
+            );
+
+
+        let comments =
+            JSON.parse(
+                localStorage.getItem(
+                    "darkArchiveComments"
+                ) || "{}"
+            );
+
+
+        let likedByUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "darkArchiveLiked"
+                ) || "{}"
+            );
+
+
+        let currentEntry =
+            null;
+
+
+        let currentImage =
+            0;
+
+
+        /* =========================================
+           PAGE NAVIGATION
+        ========================================= */
+
+        function showPage(page, button) {
+
+
+            document
+                .querySelectorAll(".page")
+                .forEach(function(element) {
+
+                    element.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            const selected =
+                document.getElementById(page);
+
+
+            if (selected) {
+
+                selected.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            document
+                .querySelectorAll(".nav-tab")
+                .forEach(function(tab) {
+
+                    tab.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            if (button) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        }
+
+
+        /* =========================================
+           LIKES
+        ========================================= */
+
+        function getLikes(id) {
+
+            return likes[id] || 0;
+
+        }
+
+
+        /* =========================================
+           COMMENTS
+        ========================================= */
+
+        function getComments(id) {
+
+            return comments[id] || [];
+
+        }
+
+
+        /* =========================================
+           UPDATE CARD COUNTS
+        ========================================= */
+
+        function updateCardCounts() {
+
+
+            document
+                .querySelectorAll(".entry-card")
+                .forEach(function(card) {
+
+
+                    const id =
+                        card.dataset.id;
+
+
+                    const likesElement =
+                        card.querySelector(
+                            ".like-number"
+                        );
+
+
+                    const commentsElement =
+                        card.querySelector(
+                            ".comment-number"
+                        );
+
+
+                    if (likesElement) {
+
+                        likesElement.textContent =
+                            getLikes(id);
+
+                    }
+
+
+                    if (commentsElement) {
+
+                        commentsElement.textContent =
+                            getComments(id).length;
+
+                    }
+
+
+                });
+
+        }
+
+
+        /* =========================================
+           SEARCH / SORT
+        ========================================= */
+
+        function filterEntries() {
+
+
+            const input =
+                document.getElementById(
+                    "searchInput"
+                );
+
+
+            const search =
+                input.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const sort =
+                document.getElementById(
+                    "sortSelect"
+                ).value;
+
+
+            const grid =
+                document.getElementById(
+                    "entriesGrid"
+                );
+
+
+            const cards =
+                Array.from(
+                    grid.querySelectorAll(
+                        ".entry-card"
+                    )
+                );
+
+
+            cards.forEach(function(card) {
+
+
+                const id =
+                    card.dataset.id;
+
+
+                const title =
+                    (
+                        card.dataset.title ||
+                        ""
+                    ).toLowerCase();
+
+
+                const description =
+                    (
+                        card.dataset.description ||
+                        ""
+                    ).toLowerCase();
+
+
+                const entry =
+                    entries[id];
+
+
+                const fullDescription =
+                    entry
+                        ? entry.description.toLowerCase()
+                        : "";
+
+
+                const commentText =
+                    getComments(id)
+                        .map(function(comment) {
+
+                            return comment.text;
+
+                        })
+                        .join(" ")
+                        .toLowerCase();
+
+
+                const searchable =
+                    title +
+                    " " +
+                    description +
+                    " " +
+                    fullDescription +
+                    " " +
+                    commentText;
+
+
+                const matched =
+                    searchable.includes(
+                        search
+                    );
+
+
+                card.style.display =
+                    matched
+                        ? ""
+                        : "none";
+
+
+            });
+
+
+            cards.sort(function(a,b) {
+
+
+                const idA =
+                    a.dataset.id;
+
+
+                const idB =
+                    b.dataset.id;
+
+
+                if (sort === "likes") {
+
+                    return (
+                        getLikes(idB) -
+                        getLikes(idA)
+                    );
+
+                }
+
+
+                if (sort === "comments") {
+
+                    return (
+                        getComments(idB).length -
+                        getComments(idA).length
+                    );
+
+                }
+
+
+                return (
+                    Number(b.dataset.date) -
+                    Number(a.dataset.date)
+                );
+
+
+            });
+
+
+            cards.forEach(function(card) {
+
+                grid.appendChild(card);
+
+            });
+
+
+            const visible =
+                cards.filter(function(card) {
+
+                    return (
+                        card.style.display !==
+                        "none"
+                    );
+
+                });
+
+
+            const noResults =
+                document.getElementById(
+                    "noResults"
+                );
+
+
+            noResults.classList.toggle(
+                "show",
+                visible.length === 0
+            );
+
+
+            document.getElementById(
+                "resultsInfo"
+            ).textContent =
+                "SHOWING " +
+                visible.length +
+                " OF " +
+                cards.length +
+                " ENTRIES";
+
+        }
+
+
+        /* =========================================
+           OPEN ENTRY
+        ========================================= */
+
+        function openEntry(id) {
+
+
+            currentEntry =
+                String(id);
+
+
+            currentImage =
+                0;
+
+
+            const entry =
+                entries[id];
+
+
+            if (!entry) {
+
+                return;
+
+            }
+
+
+            document.getElementById(
+                "modalTitle"
+            ).textContent =
+                entry.title;
+
+
+            document.getElementById(
+                "modalLabel"
+            ).textContent =
+                "ENTRY " +
+                String(id).padStart(2,"0");
+
+
+            document.getElementById(
+                "modalDescription"
+            ).textContent =
+                entry.description;
+
+
+            updateViewer();
+
+            updateModalStats();
+
+            renderComments();
+
+            switchModalTab(
+                "description"
+            );
+
+
+            document
+                .getElementById(
+                    "entryModal"
+                )
+                .classList.add(
+                    "show"
+                );
+
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+        /* =========================================
+           CLOSE ENTRY
+        ========================================= */
+
+        function closeEntry() {
+
+
+            document
+                .getElementById(
+                    "entryModal"
+                )
+                .classList.remove(
+                    "show"
+                );
+
+
+            document.body.style.overflow =
+                "";
+
+
+            currentEntry =
+                null;
+
+        }
+
+
+        /* =========================================
+           UPDATE IMAGE
+        ========================================= */
+
+        function updateViewer() {
+
+
+            const entry =
+                entries[currentEntry];
+
+
+            if (!entry) {
+
+                return;
+
+            }
+
+
+            const images =
+                entry.images || [];
+
+
+            if (!images.length) {
+
+                return;
+
+            }
+
+
+            document.getElementById(
+                "viewerImage"
+            ).src =
+                images[currentImage];
+
+
+            document.getElementById(
+                "imageCounter"
+            ).textContent =
+                (
+                    currentImage + 1
+                ) +
+                " / " +
+                images.length;
+
+        }
+
+
+        /* =========================================
+           NEXT IMAGE
+        ========================================= */
+
+        function nextImage() {
+
+
+            const entry =
+                entries[currentEntry];
+
+
+            if (!entry) {
+
+                return;
+
+            }
+
+
+            currentImage =
+                (
+                    currentImage + 1
+                ) %
+                entry.images.length;
+
+
+            updateViewer();
+
+        }
+
+
+        /* =========================================
+           PREVIOUS IMAGE
+        ========================================= */
+
+        function previousImage() {
+
+
+            const entry =
+                entries[currentEntry];
+
+
+            if (!entry) {
+
+                return;
+
+            }
+
+
+            currentImage =
+                (
+                    currentImage -
+                    1 +
+                    entry.images.length
+                ) %
+                entry.images.length;
+
+
+            updateViewer();
+
+        }
+
+
+        /* =========================================
+           LIKE
+        ========================================= */
+
+        function toggleLike() {
+
+
+            if (!currentEntry) {
+
+                return;
+
+            }
+
+
+            const id =
+                String(currentEntry);
+
+
+            if (likedByUser[id]) {
+
+
+                likes[id] =
+                    Math.max(
+                        0,
+                        getLikes(id) - 1
+                    );
+
+
+                likedByUser[id] =
+                    false;
+
+
+            } else {
+
+
+                likes[id] =
+                    getLikes(id) + 1;
+
+
+                likedByUser[id] =
+                    true;
+
+            }
+
+
+            localStorage.setItem(
+                "darkArchiveLikes",
+                JSON.stringify(likes)
+            );
+
+
+            localStorage.setItem(
+                "darkArchiveLiked",
+                JSON.stringify(likedByUser)
+            );
+
+
+            updateCardCounts();
+
+            updateModalStats();
+
+            filterEntries();
+
+        }
+
+
+        /* =========================================
+           MODAL STATS
+        ========================================= */
+
+        function updateModalStats() {
+
+
+            if (!currentEntry) {
+
+                return;
+
+            }
+
+
+            const id =
+                String(currentEntry);
+
+
+            document.getElementById(
+                "modalLikeCount"
+            ).textContent =
+                getLikes(id);
+
+
+            document.getElementById(
+                "modalCommentCount"
+            ).textContent =
+                getComments(id).length;
+
+
+            document.getElementById(
+                "modalLikeButton"
+            ).classList.toggle(
+                "liked",
+                !!likedByUser[id]
+            );
+
+        }
+
+
+        /* =========================================
+           MODAL TABS
+        ========================================= */
+
+        function switchModalTab(tab) {
+
+
+            document
+                .querySelectorAll(
+                    ".modal-tab"
+                )
+                .forEach(function(button) {
+
+                    button.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            document
+                .querySelectorAll(
+                    ".tab-panel"
+                )
+                .forEach(function(panel) {
+
+                    panel.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            if (
+                tab ===
+                "description"
+            ) {
+
+
+                document.getElementById(
+                    "descriptionTab"
+                ).classList.add(
+                    "active"
+                );
+
+
+                document.getElementById(
+                    "descriptionPanel"
+                ).classList.add(
+                    "active"
+                );
+
+            }
+
+
+            if (
+                tab ===
+                "comments"
+            ) {
+
+
+                document.getElementById(
+                    "commentsTab"
+                ).classList.add(
+                    "active"
+                );
+
+
+                document.getElementById(
+                    "commentsPanel"
+                ).classList.add(
+                    "active"
+                );
+
+
+                renderComments();
+
+            }
+
+        }
+
+
+        /* =========================================
+           ADD COMMENT
+        ========================================= */
+
+        function addComment(event) {
+
+
+            event.preventDefault();
+
+
+            if (!currentEntry) {
+
+                return;
+
+            }
+
+
+            const input =
+                document.getElementById(
+                    "commentInput"
+                );
+
+
+            const text =
+                input.value.trim();
+
+
+            if (!text) {
+
+                return;
+
+            }
+
+
+            const id =
+                String(currentEntry);
+
+
+            if (!comments[id]) {
+
+                comments[id] = [];
+
+            }
+
+
+            comments[id].push({
+
+                text:
+                    text,
+
+                date:
+                    new Date()
+                        .toLocaleString()
+
+            });
+
+
+            localStorage.setItem(
+                "darkArchiveComments",
+                JSON.stringify(comments)
+            );
+
+
+            input.value = "";
+
+
+            renderComments();
+
+            updateModalStats();
+
+            updateCardCounts();
+
+            filterEntries();
+
+        }
+
+
+        /* =========================================
+           RENDER COMMENTS
+        ========================================= */
+
+        function renderComments() {
+
+
+            const list =
+                document.getElementById(
+                    "commentsList"
+                );
+
+
+            list.innerHTML = "";
+
+
+            if (!currentEntry) {
+
+                return;
+
+            }
+
+
+            const entryComments =
+                getComments(
+                    String(currentEntry)
+                );
+
+
+            if (
+                entryComments.length === 0
+            ) {
+
+
+                list.innerHTML = `
+
+                    <div class="empty-comments">
+
+                        NO COMMENTS YET.
+                        BE THE FIRST TO COMMENT.
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+            entryComments
+                .slice()
+                .reverse()
+                .forEach(function(comment) {
+
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "comment";
+
+
+                    item.innerHTML = `
+
+                        <div class="comment-top">
+
+                            <span class="comment-name">
+                                VISITOR
+                            </span>
+
+                            <span class="comment-date">
+                                ${escapeHTML(comment.date)}
+                            </span>
+
+                        </div>
+
+                        <div class="comment-text">
+                            ${escapeHTML(comment.text)}
+                        </div>
+
+                    `;
+
+
+                    list.appendChild(
+                        item
+                    );
+
+                });
+
+        }
+
+
+        /* =========================================
+           ESCAPE HTML
+        ========================================= */
+
+        function escapeHTML(text) {
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.textContent =
+                text;
+
+
+            return div.innerHTML;
+
+        }
+
+
+        /* =========================================
+           CLOSE OUTSIDE
+        ========================================= */
+
+        function closeOutside(event) {
+
+
+            if (
+                event.target.id ===
+                "entryModal"
+            ) {
+
+                closeEntry();
+
+            }
+
+        }
+
+
+        /* =========================================
+           KEYBOARD CONTROLS
+        ========================================= */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    closeEntry();
+
+                }
+
+
+                if (
+                    currentEntry &&
+                    event.key ===
+                    "ArrowRight"
+                ) {
+
+                    nextImage();
+
+                }
+
+
+                if (
+                    currentEntry &&
+                    event.key ===
+                    "ArrowLeft"
+                ) {
+
+                    previousImage();
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           INITIALIZE
+        ========================================= */
+
+        updateCardCounts();
+
+        filterEntries();
+
+    </script>
+
+</body>
+</html>

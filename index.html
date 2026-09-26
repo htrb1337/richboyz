@@ -3066,9 +3066,9 @@ body::before {
                 <div class="modal-actions">
 
                     <button
+                        type="button"
                         id="modalLikeButton"
                         class="like-button"
-                        onclick="toggleLike()"
                     >
 
                         ♥
@@ -3204,10 +3204,33 @@ const firebaseConfig = {
     appId: "YOUR_FIREBASE_APP_ID"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-const auth = firebase.auth();
-const archiveRef = db.ref("darkArchive");
+let firebaseConfigured = true;
+let firebaseStarted = false;
+let db = null;
+let auth = null;
+let archiveRef = null;
+
+function hasRealFirebaseConfig() {
+    return Object.values(firebaseConfig).every(function(value) {
+        return typeof value === "string" && value.trim() && !value.includes("YOUR_");
+    });
+}
+
+if (hasRealFirebaseConfig()) {
+    try {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.database();
+        auth = firebase.auth();
+        archiveRef = db.ref("darkArchive");
+        firebaseStarted = true;
+    } catch (error) {
+        firebaseConfigured = false;
+        console.error("FIREBASE INIT ERROR:", error);
+    }
+} else {
+    firebaseConfigured = false;
+    console.warn("Firebase config is still using placeholders. Global likes/comments are disabled until the real Web App config is added.");
+}
 
 let likes = {};
 let comments = {};
@@ -3344,26 +3367,46 @@ function updateViewer() {
 
 function nextImage() {
     const entry = entries[currentEntry];
-    if (!entry) return;
+    if (!entry || !entry.images.length) return;
     currentImage = (currentImage + 1) % entry.images.length;
     updateViewer();
 }
 
 function previousImage() {
     const entry = entries[currentEntry];
-    if (!entry) return;
+    if (!entry || !entry.images.length) return;
     currentImage = (currentImage - 1 + entry.images.length) % entry.images.length;
     updateViewer();
 }
 
 async function toggleLike() {
-    if (!currentEntry || !currentUser) return;
+    if (!currentEntry) return;
+
+    if (!firebaseConfigured || !firebaseStarted || !auth || !archiveRef) {
+        alert("LIKES ARE NOT CONNECTED YET. ADD YOUR FIREBASE WEB APP CONFIG TO THIS HTML FILE FIRST.");
+        return;
+    }
+
+    if (!currentUser) {
+        try {
+            const result = await auth.signInAnonymously();
+            currentUser = result.user;
+        } catch (error) {
+            console.error("ANONYMOUS AUTH ERROR:", error);
+            alert("COULD NOT SIGN YOU IN ANONYMOUSLY. ENABLE ANONYMOUS AUTHENTICATION IN FIREBASE.");
+            return;
+        }
+    }
 
     const id = String(currentEntry);
     const userLikeRef = archiveRef.child("entries").child(id).child("likes").child(currentUser.uid);
+    const button = document.getElementById("modalLikeButton");
+
+    button.disabled = true;
 
     try {
         const snapshot = await userLikeRef.once("value");
+
         if (snapshot.exists()) {
             await userLikeRef.remove();
         } else {
@@ -3371,17 +3414,20 @@ async function toggleLike() {
         }
     } catch (error) {
         console.error("LIKE ERROR:", error);
-        alert("COULD NOT UPDATE LIKE. CHECK FIREBASE CONFIGURATION AND DATABASE RULES.");
+        alert("COULD NOT UPDATE LIKE. CHECK FIREBASE DATABASE RULES.");
+    } finally {
+        button.disabled = false;
     }
 }
 
 function updateModalStats() {
     if (!currentEntry) return;
     const id = String(currentEntry);
+    const likeButton = document.getElementById("modalLikeButton");
 
     document.getElementById("modalLikeCount").textContent = getLikes(id);
     document.getElementById("modalCommentCount").textContent = getComments(id).length;
-    document.getElementById("modalLikeButton").classList.toggle("liked", !!likedByUser[id]);
+    likeButton.classList.toggle("liked", !!likedByUser[id]);
 }
 
 function switchModalTab(tab) {
@@ -3407,7 +3453,23 @@ function switchModalTab(tab) {
 
 async function addComment(event) {
     event.preventDefault();
-    if (!currentEntry || !currentUser) return;
+    if (!currentEntry) return;
+
+    if (!firebaseConfigured || !firebaseStarted || !auth || !archiveRef) {
+        alert("COMMENTS ARE NOT CONNECTED YET. ADD YOUR FIREBASE WEB APP CONFIG TO THIS HTML FILE FIRST.");
+        return;
+    }
+
+    if (!currentUser) {
+        try {
+            const result = await auth.signInAnonymously();
+            currentUser = result.user;
+        } catch (error) {
+            console.error("ANONYMOUS AUTH ERROR:", error);
+            alert("COULD NOT SIGN YOU IN ANONYMOUSLY. ENABLE ANONYMOUS AUTHENTICATION IN FIREBASE.");
+            return;
+        }
+    }
 
     const input = document.getElementById("commentInput");
     const text = input.value.trim();
@@ -3427,7 +3489,7 @@ async function addComment(event) {
         switchModalTab("comments");
     } catch (error) {
         console.error("COMMENT ERROR:", error);
-        alert("COULD NOT POST COMMENT. CHECK FIREBASE CONFIGURATION AND DATABASE RULES.");
+        alert("COULD NOT POST COMMENT. CHECK FIREBASE DATABASE RULES.");
     }
 }
 
@@ -3477,12 +3539,6 @@ function formatCommentDate(timestamp) {
     return date.toLocaleString();
 }
 
-function escapeHTML(text) {
-    const div = document.createElement("div");
-    div.textContent = text;
-    return div.innerHTML;
-}
-
 function closeOutside(event) {
     if (event.target.id === "entryModal") closeEntry();
 }
@@ -3523,11 +3579,18 @@ function applyArchiveSnapshot(snapshot) {
 }
 
 function startGlobalArchive() {
+    if (!firebaseConfigured || !firebaseStarted) {
+        updateCardCounts();
+        filterEntries();
+        return;
+    }
+
     auth.signInAnonymously().then(function(result) {
         currentUser = result.user;
+
         archiveRef.on("value", applyArchiveSnapshot, function(error) {
             console.error("DATABASE READ ERROR:", error);
-            alert("COULD NOT LOAD GLOBAL LIKES/COMMENTS. CHECK FIREBASE DATABASE RULES.");
+            alert("COULD NOT LOAD GLOBAL LIKES/COMMENTS. CHECK FIREBASE DATABASE READ RULES.");
         });
     }).catch(function(error) {
         console.error("FIREBASE AUTH ERROR:", error);
@@ -3549,6 +3612,12 @@ document.querySelectorAll(".entry-description").forEach(function(button) {
         event.stopPropagation();
         openEntry(this.dataset.entryId);
     });
+});
+
+document.getElementById("modalLikeButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleLike();
 });
 
 updateCardCounts();

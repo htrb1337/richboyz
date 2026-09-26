@@ -2597,9 +2597,9 @@ body::before {
                             </div>
 
 
-                            <a
-                                class="entry-description"
-                                onclick="openEntry(1)"
+                            <button
+                                type="button"
+                                class="entry-description" data-entry-id="1"
                             >
 
                                 VIEW DESCRIPTION
@@ -2608,7 +2608,7 @@ body::before {
                                     →
                                 </span>
 
-                            </a>
+                            </button>
 
                         </div>
 
@@ -2662,9 +2662,9 @@ body::before {
                             </div>
 
 
-                            <a
-                                class="entry-description"
-                                onclick="openEntry(2)"
+                            <button
+                                type="button"
+                                class="entry-description" data-entry-id="2"
                             >
 
                                 VIEW DESCRIPTION
@@ -2673,7 +2673,7 @@ body::before {
                                     →
                                 </span>
 
-                            </a>
+                            </button>
 
                         </div>
 
@@ -2727,9 +2727,9 @@ body::before {
                             </div>
 
 
-                            <a
-                                class="entry-description"
-                                onclick="openEntry(3)"
+                            <button
+                                type="button"
+                                class="entry-description" data-entry-id="3"
                             >
 
                                 VIEW DESCRIPTION
@@ -2738,7 +2738,7 @@ body::before {
                                     →
                                 </span>
 
-                            </a>
+                            </button>
 
                         </div>
 
@@ -2792,9 +2792,9 @@ body::before {
                             </div>
 
 
-                            <a
-                                class="entry-description"
-                                onclick="openEntry(4)"
+                            <button
+                                type="button"
+                                class="entry-description" data-entry-id="4"
                             >
 
                                 VIEW DESCRIPTION
@@ -2803,7 +2803,7 @@ body::before {
                                     →
                                 </span>
 
-                            </a>
+                            </button>
 
                         </div>
 
@@ -2857,9 +2857,9 @@ body::before {
                             </div>
 
 
-                            <a
-                                class="entry-description"
-                                onclick="openEntry(5)"
+                            <button
+                                type="button"
+                                class="entry-description" data-entry-id="5"
                             >
 
                                 VIEW DESCRIPTION
@@ -2868,7 +2868,7 @@ body::before {
                                     →
                                 </span>
 
-                            </a>
+                            </button>
 
                         </div>
 
@@ -2922,9 +2922,9 @@ body::before {
                             </div>
 
 
-                            <a
-                                class="entry-description"
-                                onclick="openEntry(6)"
+                            <button
+                                type="button"
+                                class="entry-description" data-entry-id="6"
                             >
 
                                 VIEW DESCRIPTION
@@ -2933,7 +2933,7 @@ body::before {
                                     →
                                 </span>
 
-                            </a>
+                            </button>
 
                         </div>
 
@@ -3216,6 +3216,20 @@ let currentEntry = null;
 let currentImage = 0;
 let currentUser = null;
 let archiveReady = false;
+
+const entries = {};
+document.querySelectorAll(".entry-card").forEach(function(card) {
+    const id = String(card.dataset.id);
+    const titleElement = card.querySelector(".entry-content h3");
+    const descriptionElement = card.querySelector(".entry-content p");
+    const imageElement = card.querySelector(".entry-image img");
+
+    entries[id] = {
+        title: titleElement ? titleElement.textContent.trim() : (card.dataset.title || "ENTRY"),
+        description: descriptionElement ? descriptionElement.textContent.trim() : (card.dataset.description || ""),
+        images: imageElement && imageElement.src ? [imageElement.src] : []
+    };
+});
 
 function showPage(page, button) {
     document.querySelectorAll(".page").forEach(function(element) {
@@ -3527,6 +3541,14 @@ document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") closeEntry();
     if (currentEntry && event.key === "ArrowRight") nextImage();
     if (currentEntry && event.key === "ArrowLeft") previousImage();
+});
+
+document.querySelectorAll(".entry-description").forEach(function(button) {
+    button.addEventListener("click", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        openEntry(this.dataset.entryId);
+    });
 });
 
 updateCardCounts();

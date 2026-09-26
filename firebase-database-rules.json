@@ -3,6 +3,7 @@
     "darkArchive": {
       "entries": {
         "$entryId": {
+          ".read": "auth != null",
           "likes": {
             "$uid": {
               ".read": "auth != null",

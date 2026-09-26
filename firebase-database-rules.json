@@ -4,6 +4,7 @@
       "entries": {
         "$entryId": {
           ".read": "auth != null",
+
           "likes": {
             "$uid": {
               ".read": "auth != null",
@@ -11,8 +12,10 @@
               ".validate": "newData.val() === true"
             }
           },
+
           "comments": {
             ".read": "auth != null",
+
             "$commentId": {
               ".write": "auth != null && !data.exists() && newData.child('uid').val() === auth.uid",
               ".validate": "newData.hasChildren(['uid','text','timestamp']) && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 500 && newData.child('uid').isString()"

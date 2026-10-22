@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='black'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='white' font-family='Georgia,serif' font-weight='bold'%3EM%3C/text%3E%3C/svg%3E" />
+    <title>MERCY — no mercy for the wicked</title>
+    <meta name="description" content="MERCY crew — hover cards to change the world background & music. Members only." />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- ================================================================
+         ★★★ MERCY CONFIG — 3 LANG ANG KAILANGAN ★★★
+         1. Discord ID ng tao
+         2. bg = background niya kapag naka-hover
+         3. music = music niya kapag naka-hover
+         Pangalan, avatar, decoration = AUTO-FETCH sa Discord.
+         Live "Playing" status = auto kapag nasa discord.gg/lanyard siya.
+         ----------------------------------------------------------------
+         PAANO MAGPALIT NG TAO:
+           1. Discord Settings → Advanced → Developer Mode ON
+           2. Right-click profile → Copy User ID
+           3. Palitan ang ID dito + bg + music niya, save, refresh. Tapos.
+         ----------------------------------------------------------------
+         logo: "" = built-in Mercy logo (+ tab icon). O paste image URL.
+    ================================================================= -->
+    <script>
+      window.MERCY_CONFIG = {
+        logo: "",
+        tagline: "no mercy for the wicked.",
+
+        mainBg: "https://images.pexels.com/photos/9694216/pexels-photo-9694216.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        mainMusic: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+
+        featured: [
+          "94490510688792576",
+          "235148962103951360",
+          "155149108183695360",
+          "936929561302675456",
+        ],
+
+        members: [
+          "80351110224678912",
+          "282859044593598464",
+          "270904126974590976",
+          "432610292342587392",
+          "159985870458322944",
+          "235088799074484224",
+          "713586207119900693",
+          "172002275412279296",
+        ],
+
+        users: {
+          "94490510688792576": {
+            bg: "https://images.pexels.com/photos/9177957/pexels-photo-9177957.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+          },
+          "235148962103951360": {
+            bg: "https://images.pexels.com/photos/17916245/pexels-photo-17916245.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+          },
+          "155149108183695360": {
+            bg: "https://images.pexels.com/photos/34940541/pexels-photo-34940541.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+          },
+          "936929561302675456": {
+            bg: "https://images.pexels.com/photos/30994960/pexels-photo-30994960.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3",
+          },
+          "80351110224678912": {
+            bg: "https://images.pexels.com/photos/9694216/pexels-photo-9694216.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+          },
+          "282859044593598464": {
+            bg: "https://images.pexels.com/photos/17916245/pexels-photo-17916245.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+          },
+          "270904126974590976": {
+            bg: "https://images.pexels.com/photos/10063147/pexels-photo-10063147.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+          },
+          "432610292342587392": {
+            bg: "https://images.pexels.com/photos/10293280/pexels-photo-10293280.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+          },
+          "159985870458322944": {
+            bg: "https://images.pexels.com/photos/27390676/pexels-photo-27390676.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+          },
+          "235088799074484224": {
+            bg: "https://images.pexels.com/photos/39121238/pexels-photo-39121238.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+          },
+          "713586207119900693": {
+            bg: "https://images.pexels.com/photos/12036096/pexels-photo-12036096.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
+          },
+          "172002275412279296": {
+            bg: "https://images.pexels.com/photos/34940541/pexels-photo-34940541.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
+          },
+        },
+      };
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
